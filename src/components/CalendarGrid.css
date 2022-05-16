@@ -1,0 +1,61 @@
+/* .CalendarGrid{ 
+    color: red;
+    border: 1px solid black;
+    width: 200px;
+    weight: 200px;
+    display: grid;
+    grid-template: 150 / auto auto auto;
+} */
+
+/* .grid-container {
+    display: grid;
+    grid-template-areas:
+      'dateRange dateRange dateRange dateRange dateRange dateRange dateRange'
+      'dayOfWeek Sunday Monday dayOfWeek dayOfWeek dayOfWeek dayOfWeek'
+      'menu footer footer footer footer footer';
+    gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;} */
+/* 
+.item1 { grid-area: Sunday;
+background-color: yellow;}
+
+.item2 {
+    grid-area: Monday;
+    background-color: purple;
+} */
+
+.grid-item {
+    background-color: #f5f5f5;
+    border: 2px solid #EB8486;
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    align-self: stretch;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 9% 13% 13% 13% 13% 13% 13% 13%;
+    grid-template-rows: 100px 100px 100px 100px 100px 100px 100px;
+    background-color: #f5f5f5;
+    padding: 5px;
+    align-items: center;
+  } 
+
+  .item1 {
+    grid-column: 1 / span 8;
+    grid-row: 1
+  }
+
+  .cal-grid {display:flex;
+  flex-direction: row;
+background-color: 97A7B3;
+justify-content: center;}
+
+
+.modal{z-index: 1;
+  position: absolute;
+  align-self: flex-start;
+  justify-self: flex-start;
+}

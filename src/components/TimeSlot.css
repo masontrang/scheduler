@@ -1,0 +1,15 @@
+.TimeSlot{
+    background-color: #CAE7B9;
+    padding: 1px;
+    font-size:medium;
+    min-height: 5rem;
+    min-width: 8rem;
+}
+
+.TimeSlot:hover {
+    background-color: #cae7b99d;
+    /* Green */
+    color: white;
+}
+
+.TimeSlot-blocked{}
