@@ -18,6 +18,8 @@ function TimeSlotColumns(props) {
     "7PM",
   ];
 
+  console.log("timeslotcols2", props.reservationList2);
+
   return (
     <div className="TimeSlotColumns">
       {hours.map((hour) => {
@@ -31,6 +33,13 @@ function TimeSlotColumns(props) {
           </div>
         );
       })}
+      {/* {props.reservationList.map((reservation) => {
+        return (
+          <div>
+            <TimeSlot></TimeSlot>
+          </div>
+        );
+      })} */}
     </div>
   );
 }

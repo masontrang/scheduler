@@ -7,7 +7,7 @@ function TimeSlot(props) {
       disabled={props.disabled}
       onClick={props.onClick}
     >
-      {props.day} {props.hour}
+      {props.day} {props.hour} {props.label}
     </button>
   );
 }

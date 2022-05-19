@@ -1,8 +1,9 @@
 import "./CalendarGrid.css";
 import TimeSlotRows from "./TimeSlotRows";
-import TimeSlotColumns from "./TimeSlotColumns";
+import DayColumn from "./DayColumn";
 import { useState, useEffect } from "react";
 import ReserveSlot from "./ReserveSlot";
+import TimeSlotColumns from "./TimeSlotColumns";
 import TimeSlot from "./TimeSlot";
 const days = ["Sun", "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat"];
 
@@ -12,10 +13,12 @@ function CalendarGrid(props) {
   const [confirmRes, setConfirmRes] = useState({});
   const [reserved, setReserved] = useState(false);
 
-  const [reservationList, setReservationList] = useState([]);
+  console.log("cal grid", props.reservationList);
+
+  const [reservationList2, setReservationList] = useState([]);
 
   useEffect(() => {
-    setReservationList(props.reservationList);
+    setReservationList(reservationList2);
   }, []);
 
   // function addReservation() {
@@ -24,9 +27,9 @@ function CalendarGrid(props) {
 
   // reservationList = [{day: ,time:, reserved: true}, {day: ,time:} , {day: ,time:} ,{day: ,time:} ]
 
-  useEffect(() => {
-    setReservationList([...reservationList, confirmRes]);
-  }, [confirmRes]);
+  // useEffect(() => {
+  //   setReservationList([...reservationList, confirmRes]);
+  // }, [confirmRes]);
 
   //  useEffect(() => {
   //    getNoteList().then(setNoteList);
@@ -36,9 +39,9 @@ function CalendarGrid(props) {
 
   return (
     <div>
-      <div>
+      {/* <div>
         Confirmed Res {confirmRes.day} {confirmRes.time}
-        <div>
+        {/* <div>
           {props.reservationList2.map(
             (reservation) =>
               reservation.day == "Sun" && (
@@ -47,11 +50,10 @@ function CalendarGrid(props) {
                 </div>
               )
           )}
-        </div>
-        <TimeSlotColumns reservationList2={props.reservationList2} />
-      </div>
+        </div> */}
+      {/* <DayColumn reservationList={props.reservationList}>Test</DayColumn>
+      </div> */}
 
-      {/* Reserve  */}
       <div className="cal-grid">
         {reserveSlotModal && (
           <ReserveSlot
@@ -77,7 +79,7 @@ function CalendarGrid(props) {
               console.log("res", temp);
               setResHold(temp);
               setReserveSlotModal(true);
-              console.log("reservation list", reservationList);
+              // console.log("reservation list", reservationList);
             }}
           />
           <TimeSlotRows
@@ -85,10 +87,13 @@ function CalendarGrid(props) {
             hour={"9AM"}
             onClick={(day, hour) => {
               console.log(day, "9AM");
-              setReserveSlotModal(true);
+
               let temp = { day: day, time: "9AM" };
+
+              // setReserved = { setReserved };
+              console.log("res", temp);
               setResHold(temp);
-              console.log("res", resHold);
+              setReserveSlotModal(true);
             }}
           />
           <TimeSlotRows

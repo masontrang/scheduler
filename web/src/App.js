@@ -14,8 +14,9 @@ async function getReservationList() {
   // }))
 
   const reservationList = json;
-  console.log(reservationList);
+  // console.log(reservationList);
   return reservationList;
+  console.log("app", reservationList);
 }
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
   useEffect(() => {
     getReservationList().then(setReservationList);
   }, []);
+
+  console.log("app", reservationList);
 
   return (
     <div className="App">
@@ -42,7 +45,7 @@ function App() {
       </div> */}
       <ViewSelector />
 
-      <CalendarGrid reservationList2={reservationList} />
+      <CalendarGrid reservationList={reservationList} />
     </div>
   );
 }
