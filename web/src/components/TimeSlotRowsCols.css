@@ -3,9 +3,12 @@
     flex-direction: row;
     height: stretch
 }
-
+/* 
 .TimeSlotColumns {
     display: flex;
     flex-direction: column;
-    /* background-color: blue; */
-}
+    background-color: white;
+    height: 65rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+} */

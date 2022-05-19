@@ -25,7 +25,7 @@ let reservationList = [];
 
 for (day of days) {
   for (hour of hours) {
-    let reservation = { day: day, time: hour, name: "", reserved: false };
+    let reservation = { day: day, time: hour, name: "name", reserved: false };
     reservationList.push(reservation);
   }
 }

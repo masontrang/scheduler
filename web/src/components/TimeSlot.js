@@ -3,11 +3,12 @@ import "./TimeSlot.css";
 function TimeSlot(props) {
   return (
     <button
-      className={`TimeSlot grid-item ${props.reserved ? !"reserved" : ""}`}
+      // <div className={`form-control ${!isValid ? "invalid" : ""}`}>
+      className={`TimeSlot grid-item ${props.reserved ? "reserved" : ""}`}
       disabled={props.disabled}
       onClick={props.onClick}
     >
-      {props.day} {props.hour} {props.label}
+      {props.day} {props.time} {props.reserved}
     </button>
   );
 }

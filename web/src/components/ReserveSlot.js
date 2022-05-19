@@ -1,37 +1,31 @@
 import "./ReserveSlot.css";
-import { useEffect } from "react";
 
 function ReserveSlot(props) {
-  //   let confirmRes = [];
-  //   function setConfirmRes(value) {
-  //     confirmRes = value;
-  //   }
-
-  //   useEffect(() => {
-  //     setConfirmRes();
-  //   }, [props.confirmRes]);
-
+  let nameOfReservation = document.getElementById("nameId");
   return (
     <div className="ReserveSlot">
-      Reserve
+      Reserve {props.modalData.day} at {props.modalData.time} ?
       <div>
-        {props.resHold.day}
-        {" at "} {props.resHold.time}?
+        {/* {props.resHold.day} */}
+        {/* {" at "} {props.resHold.time}? */}
       </div>
+      {/* <label for="name">Name</label> */}
+      <form>
+        <input
+          className="inputField"
+          type="text"
+          name="name"
+          id="nameId"
+          placeholder="Enter name"
+        ></input>
+      </form>
       <div>
         <button
           className="reserveButton"
           onClick={() => {
             props.setReserveSlotModal(false);
-            console.log("confirmResHold-", props.resHold);
-            props.setConfirmRes(props.resHold);
-            // props.setReserved(true);
-            // console.log("conf", props.confirmRes);
-
-            // props.confirmRes = props.resHold;
-            // console.log("conf2", props.confirmRes);
-            
-            return props.confirmRes;
+            props.setModalConfirm(true);
+            // console.log(nameOfReservation);
           }}
         >
           Yes
@@ -40,7 +34,7 @@ function ReserveSlot(props) {
           className="reserveButton"
           onClick={() => {
             props.setReserveSlotModal(false);
-            props.setConfirmRes(false);
+            props.setModalConfirm(false);
           }}
         >
           No

@@ -1,4 +1,4 @@
-.ReserveSlot-bg {
+/* .ReserveSlot-bg {
         
       /* width:auto;
       height: auto;
@@ -7,25 +7,26 @@
         background-color: blue;
         width: 300px;
     height: 400px; */
-    }
+    /* }  */
 
 .ReserveSlot{
-    z-index: 1;
-    position: fixed;
+   
+    position: relative;
+   
     border-radius: 20px;
     border: solid 2px black;
-    padding: 25px;
-    margin: 100px;
+    padding: 30px;
+    
     width: 400px;
     height: 220px;
     align-self: center;
     background-color: #EB8486;
     font-size:xx-large;
     color: white;
-font-weight: bold;
-font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-display:flex;
-flex-direction: column;}
+    font-weight: bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display:flex;
+    flex-direction: column;}
 
 
 .reserveButton{
@@ -36,3 +37,4 @@ flex-direction: column;}
     background-color: aliceblue;
     font-size: large}
 
+.inputField{margin:20px;padding:8px}

@@ -12,29 +12,23 @@ async function getReservationList() {
   // return json.map(reservation => ({
   //   ...reservation,
   // }))
-
   const reservationList = json;
-  // console.log(reservationList);
   return reservationList;
-  console.log("app", reservationList);
 }
 
 function App() {
-  // const [reserveSlot, setReserveSlot] = useState(false);
-
-  // const [blockTimeSlot, setBlockTimeSlot] = useState(false);
   const [reservationList, setReservationList] = useState([]);
 
   useEffect(() => {
     getReservationList().then(setReservationList);
   }, []);
 
-  console.log("app", reservationList);
+  // console.log("app", reservationList);
 
   return (
     <div className="App">
-      <header>hi</header>
-      <div>Hello</div>
+      <header className="header">Scheduler</header>
+
       {/* <div>
         {reservationList.map((reservation) => (
           <div>
@@ -45,7 +39,17 @@ function App() {
       </div> */}
       <ViewSelector />
 
-      <CalendarGrid reservationList={reservationList} />
+      <CalendarGrid
+        reservationList={reservationList}
+        setReservationList={setReservationList}
+      />
+      <button
+        onClick={() => {
+          console.log(reservationList);
+        }}
+      >
+        test
+      </button>
     </div>
   );
 }

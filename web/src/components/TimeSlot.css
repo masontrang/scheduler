@@ -1,6 +1,4 @@
-.reserved {
-    background-color: red;
-}
+
 
 .TimeSlot{
     background-color: #CAE7B9;
@@ -16,3 +14,7 @@
     color: white;
 }
 
+
+.TimeSlot.reserved {
+    background-color: rgb(9, 161, 255);
+}
