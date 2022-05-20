@@ -1,7 +1,7 @@
 import "./CalendarGrid.css";
 // import TimeSlotRows from "./TimeSlotRows";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReserveSlot from "./ReserveSlot";
 // import TimeSlotColumns from "./TimeSlotColumns";
 import TimeSlot from "./TimeSlot";
@@ -11,14 +11,24 @@ function CalendarGrid(props) {
   const [reserveSlotModal, setReserveSlotModal] = useState(false);
   const [modalConfirm, setModalConfirm] = useState(false);
   const [modalData, setModalData] = useState({ day: "", time: "" });
-  // const [reservedStyle, setReservedStyle] = useState(false);
-  // const [reservation, setReservation] = useState("");
-
   const { user, isAuthenticated, isLoading } = useAuth0();
-
-  // useEffect(() => {
-  //   props.saveReservationList();
-  // }, [modalConfirm]);
+  let days = ["Sun", "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat"];
+  let hours = [
+    "",
+    "8AM",
+    "9AM",
+    "10AM",
+    "11AM",
+    "12PM",
+    "1PM",
+    "2PM",
+    "3PM",
+    "4PM",
+    "5PM",
+    "6PM",
+    "7PM",
+    "8PM",
+  ];
 
   function reservationHandler(reservation, index) {
     setReserveSlotModal(true);
@@ -28,14 +38,17 @@ function CalendarGrid(props) {
       name: reservation.name,
       reserved: reservation.reserved,
     });
-    if (modalConfirm) {
-      reservation.reserved = true;
+    if (modalConfirm && !reservation.reserved) {
       const listCopy = props.reservationList.slice();
       listCopy[index] = { ...reservation, reserved: true, name: user.name };
       console.log("reservation name", reservation.name);
       props.setReservationList(listCopy);
+    } else if (modalConfirm && reservation.reserved) {
+      const listCopy = props.reservationList.slice();
+      listCopy[index] = { ...reservation, reserved: false, name: "name" };
+      props.setReservationList(listCopy);
     }
-    return;
+    setModalConfirm(false);
   }
 
   return (
@@ -51,43 +64,33 @@ function CalendarGrid(props) {
           />
         )}
       </div>
-      <div className="timeSlots">
-        {props.reservationList.map((reservation, index) => {
-          return (
-            <div>
-              <TimeSlot
-                className="hour-label"
-                time={reservation.time}
-                day={reservation.day}
-                reserved={reservation.reserved}
-                name={reservation.name}
-                onClick={() => {
-                  reservationHandler(reservation, index);
-                }}
-              ></TimeSlot>
-            </div>
-          );
-        })}
-      </div>
+      {isAuthenticated && (
+        <div className="timeSlots">
+          {hours.map((hour) => {
+            return <TimeSlot time={hour} disabled="disabled"></TimeSlot>;
+          })}
+
+          {props.reservationList.map((reservation, index) => {
+            return (
+              <div>
+                <TimeSlot
+                  className="hour-label"
+                  time={reservation.time}
+                  day={reservation.day}
+                  reserved={reservation.reserved}
+                  name={reservation.name}
+                  disabled={reservation.disabled}
+                  onClick={() => {
+                    reservationHandler(reservation, index);
+                  }}
+                ></TimeSlot>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
-
-  // <TimeSlotRows days={days} hour={""} disabled={true} />
-  // <TimeSlotRows
-  //   days={days}
-  //   hour={"8AM"}
-  //   onClick={(day, hour) => {
-  //     console.log(day, "8AM");
-
-  //     let temp = { day: day, time: "8AM" };
-
-  //     // setReserved = { setReserved };
-  //     console.log("res", temp);
-  //     setResHold(temp);
-  //     setReserveSlotModal(true);
-  //     // console.log("reservation list", reservationList);
-  //   }}
-  // />
 }
 
 export default CalendarGrid;

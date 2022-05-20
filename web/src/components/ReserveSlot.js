@@ -5,11 +5,31 @@ function ReserveSlot(props) {
     <div
       onClick={() => {
         props.setReserveSlotModal(false);
-        props.setModalConfirm(false);
       }}
     >
       {props.modalData.day} at {props.modalData.time} is reserved by{" "}
-      {props.modalData.name}
+      {props.modalData.name}. <br></br>Remove reservation?
+      <div>
+        <button
+          className="reserveButton"
+          onClick={() => {
+            props.setReserveSlotModal(false);
+            props.setModalConfirm(true);
+            props.saveReservationList();
+          }}
+        >
+          Yes
+        </button>
+        <button
+          className="reserveButton"
+          onClick={() => {
+            props.setReserveSlotModal(false);
+            props.setModalConfirm(false);
+          }}
+        >
+          No
+        </button>
+      </div>
     </div>
   );
 

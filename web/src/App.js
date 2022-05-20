@@ -6,15 +6,12 @@ import React, { useState, useEffect } from "react";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
 import Profile from "./components/Profile";
+
 const apiUrl = "http://localhost:8080";
 
 async function getReservationList() {
   const response = await fetch(`${apiUrl}/reservationList`);
   const json = await response.json();
-
-  // return json.map(reservation => ({
-  //   ...reservation,
-  // }))
   const reservationList = json;
   return reservationList;
 }
@@ -26,10 +23,6 @@ function App() {
     getReservationList().then(setReservationList);
   }, []);
 
-  // useEffect(() => {
-  //   saveReservationList();
-  // }, [reservationList]);
-
   async function saveReservationList() {
     const response = await fetch(`${apiUrl}/reservationList`, {
       method: "POST",
@@ -38,36 +31,17 @@ function App() {
       },
       body: JSON.stringify(reservationList),
     });
-    // get back the updated version
-    // const updatedReservationList = await response.json();
   }
 
   return (
     <div className="App">
       <header className="header">Scheduler</header>
-
-      {/* <div>
-        {reservationList.map((reservation) => (
-          <div>
-            Mapped from Express Server Day {reservation.day} Time{" "}
-            {reservation.time}
-          </div>
-        ))}
-      </div> */}
-      <ViewSelector />
-
+      {/* <ViewSelector /> */}
       <CalendarGrid
         reservationList={reservationList}
         setReservationList={setReservationList}
         saveReservationList={saveReservationList}
       />
-      <button
-        onClick={() => {
-          console.log(reservationList);
-        }}
-      >
-        test
-      </button>
       <LoginButton></LoginButton>
       <LogoutButton></LogoutButton>
       <Profile></Profile>

@@ -6,6 +6,7 @@ const router = Router();
 
 let days = ["Sun", "Mon", "Tues", "Weds", "Thurs", "Fri", "Sat"];
 let hours = [
+  "",
   "8AM",
   "9AM",
   "10AM",
@@ -26,23 +27,20 @@ let reservationList = [];
 for (day of days) {
   for (hour of hours) {
     let reservation = { day: day, time: hour, name: "name", reserved: false };
+    if (hours === "") {
+      reservation.disabled = "disabled";
+    }
     reservationList.push(reservation);
   }
 }
-
-const initialState = reservationList;
 
 router.get("/", (req, res) => {
   res.json(reservationList);
 });
 
 router.post("/", (req, res) => {
-
-
   reservationList = req.body;
-
   console.log("post", reservationList);
-
   res.status(201).json(reservationList);
 });
 
