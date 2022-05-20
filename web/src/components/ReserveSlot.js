@@ -1,31 +1,28 @@
 import "./ReserveSlot.css";
 
 function ReserveSlot(props) {
-  let nameOfReservation = document.getElementById("nameId");
-  return (
-    <div className="ReserveSlot">
+  const reservedOutput = (
+    <div
+      onClick={() => {
+        props.setReserveSlotModal(false);
+        props.setModalConfirm(false);
+      }}
+    >
+      {props.modalData.day} at {props.modalData.time} is reserved by{" "}
+      {props.modalData.name}
+    </div>
+  );
+
+  const notReservedOutput = (
+    <div>
       Reserve {props.modalData.day} at {props.modalData.time} ?
-      <div>
-        {/* {props.resHold.day} */}
-        {/* {" at "} {props.resHold.time}? */}
-      </div>
-      {/* <label for="name">Name</label> */}
-      <form>
-        <input
-          className="inputField"
-          type="text"
-          name="name"
-          id="nameId"
-          placeholder="Enter name"
-        ></input>
-      </form>
       <div>
         <button
           className="reserveButton"
           onClick={() => {
             props.setReserveSlotModal(false);
             props.setModalConfirm(true);
-            // console.log(nameOfReservation);
+            props.saveReservationList();
           }}
         >
           Yes
@@ -40,6 +37,12 @@ function ReserveSlot(props) {
           No
         </button>
       </div>
+    </div>
+  );
+
+  return (
+    <div className="ReserveSlot">
+      {props.modalData.reserved ? reservedOutput : notReservedOutput}
     </div>
   );
 }

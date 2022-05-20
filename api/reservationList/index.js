@@ -33,9 +33,17 @@ for (day of days) {
 const initialState = reservationList;
 
 router.get("/", (req, res) => {
-  res.json(reservationList); // return all the notes
+  res.json(reservationList);
 });
 
-router.post("/", (req, res) => {});
+router.post("/", (req, res) => {
+
+
+  reservationList = req.body;
+
+  console.log("post", reservationList);
+
+  res.status(201).json(reservationList);
+});
 
 module.exports = router;

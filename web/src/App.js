@@ -3,6 +3,9 @@ import CalendarGrid from "./components/CalendarGrid";
 import ViewSelector from "./components/ViewSelector";
 // import ReserveSlot from "./components/ReserveSlot";
 import React, { useState, useEffect } from "react";
+import LoginButton from "./components/LoginButton";
+import LogoutButton from "./components/LogoutButton";
+import Profile from "./components/Profile";
 const apiUrl = "http://localhost:8080";
 
 async function getReservationList() {
@@ -23,7 +26,21 @@ function App() {
     getReservationList().then(setReservationList);
   }, []);
 
-  // console.log("app", reservationList);
+  // useEffect(() => {
+  //   saveReservationList();
+  // }, [reservationList]);
+
+  async function saveReservationList() {
+    const response = await fetch(`${apiUrl}/reservationList`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reservationList),
+    });
+    // get back the updated version
+    // const updatedReservationList = await response.json();
+  }
 
   return (
     <div className="App">
@@ -42,6 +59,7 @@ function App() {
       <CalendarGrid
         reservationList={reservationList}
         setReservationList={setReservationList}
+        saveReservationList={saveReservationList}
       />
       <button
         onClick={() => {
@@ -50,6 +68,9 @@ function App() {
       >
         test
       </button>
+      <LoginButton></LoginButton>
+      <LogoutButton></LogoutButton>
+      <Profile></Profile>
     </div>
   );
 }

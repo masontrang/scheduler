@@ -4,11 +4,11 @@ function ViewSelector() {
       Select View
       <form>
         <input type="radio" id="monthly" name="viewSelection" value="monthly" />
-        <label for="monthly">Month</label>
+        <label htmlFor="monthly">Month</label>
         <input type="radio" id="weekly" name="viewSelection" value="weekly" />
-        <label for="weekly">Week</label>
+        <label htmlFor="weekly">Week</label>
         <input type="radio" id="List" name="viewSelection" value="List" />
-        <label for="list">List</label>
+        <label htmlFor="list">List</label>
       </form>
     </div>
   );
